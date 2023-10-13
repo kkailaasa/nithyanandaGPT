@@ -44,14 +44,14 @@ This project was inspired by the original [privateGPT](https://github.com/imarti
 1. 📥 Clone the repo using git:
 
 ```shell
-git clone https://github.com/PromtEngineer/localGPT.git
+git clone https://github.com/kkailaasa/nithyanandaGPT.git
 ```
 
 2. 🐍 Install [conda](https://www.anaconda.com/download) for virtual environment management. Create and activate a new virtual environment.
 
 ```shell
-conda create -n localGPT python=3.10.0
-conda activate localGPT
+conda create -n nithyanandaGPT python=3.10.0
+conda activate nithyanandaGPT
 ```
 
 3. 🛠️ Install the dependencies using pip
@@ -92,10 +92,6 @@ It includes CUDA, your system just needs Docker, BuildKit, your NVIDIA GPU drive
 Build as `docker build . -t localgpt`, requires BuildKit.
 Docker BuildKit does not support GPU during _docker build_ time right now, only during _docker run_.
 Run as `docker run -it --mount src="$HOME/.cache",target=/root/.cache,type=bind --gpus=all localgpt`.
-
-## Test dataset
-
-For testing, this repository comes with [Constitution of USA](https://constitutioncenter.org/media/files/constitution.pdf) as an example file to use.
 
 ## Ingesting your OWN Data.
 
