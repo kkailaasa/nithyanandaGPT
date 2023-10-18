@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Display user input immediately
       responseContainer.innerHTML += `<p class="user_prompt">User Prompt: ${userPrompt}</p>`;
       
-      const mainPromptUrl = 'http://localhost:5110/api/prompt_route';
+      const mainPromptUrl = 'http://87.197.111.68:40062/api/prompt_route';
       try {
         const response = await fetch(mainPromptUrl, {
           method: 'POST',
