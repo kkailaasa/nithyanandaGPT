@@ -16,7 +16,7 @@ SOURCE_DIRECTORY = f"{ROOT_DIRECTORY}/SOURCE_DOCUMENTS"
 
 PERSIST_DIRECTORY = f"{ROOT_DIRECTORY}/DB"
 
-MODELS_PATH = "/home/psp/models/"
+MODELS_PATH = "./models/"
 
 # Can be changed to a specific number
 INGEST_THREADS = os.cpu_count() or 8
