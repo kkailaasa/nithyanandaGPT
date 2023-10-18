@@ -6,6 +6,7 @@ import subprocess
 import torch
 from flask import Flask, jsonify, request
 from flask_cors import CORS  # Import the CORS module
+from flask import current_app
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 
@@ -77,6 +78,17 @@ QA = RetrievalQA.from_chain_type(
 
 app = Flask(__name__)
 CORS(app)
+
+with app.app_context():
+    app.QA = RetrievalQA.from_chain_type(
+        llm=LLM,
+        chain_type="stuff",
+        retriever=RETRIEVER,
+        return_source_documents=SHOW_SOURCES,
+        chain_type_kwargs={
+            "prompt": prompt,
+        },
+    )
 
 @app.route("/api/delete_source", methods=["GET"])
 def delete_source_route():
@@ -154,10 +166,12 @@ def run_ingest_route():
 
 @app.route("/api/prompt_route", methods=["GET", "POST"])
 def prompt_route():
-    global QA
+    with current_app.app_context():
+        # DB = current_app.DB
+        QA = current_app.QA
     user_prompt = request.form.get("user_prompt")
     if user_prompt:
-        # print(f'User Prompt: {user_prompt}')
+        print(f'User Prompt: {user_prompt}')
         # Get the answer from the chain
         res = QA(user_prompt)
         answer, docs = res["result"], res["source_documents"]
